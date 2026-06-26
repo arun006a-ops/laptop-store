@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laptop Store – Best Laptops For Every Need</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ─── Reset & Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a2e; background: #fff; font-size: 15px; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+  button { cursor: pointer; font-family: inherit; border: none; outline: none; }
+
+  /* ─── Variables ─── */
+  :root {
+    --blue: #0d1018;
+    --blue-dark: #1343b0;
+    --blue-light: #e8f0fd;
+    --yellow: #f59e0b;
+    --green: #16a34a;
+    --red: #dc2626;
+    --gray-50: #f8fafc;
+    --gray-100: #030d16;
+    --gray-200: #e2e8f0;
+    --gray-400: #0deb93;
+    --gray-600: #475569;
+    --gray-800: #364661;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+    --shadow-lg: 0 8px 32px rgba(51, 48, 48, 0.13);
+    --radius: 10px;
+  }
+
+  /* ─── Top Bar ─── */
+  .topbar { background: hsla(200, 20%, 3%, 0.54); color: #eeecef; font-size: 12.5px; padding: 8px 0; }
+  .topbar-inner { max-width: 1280px; margin: auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+  .topbar a { color: #cbd5e1; transition: color .2s; }
+  .topbar a:hover { color: #ab0e0e; }
+  .topbar-right { display: flex; gap: 20px; align-items: center; }
+
+  /* ─── Header ─── */
+  header { background: #fff; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+  .header-inner { max-width: 1280px; margin: auto; padding: 0 24px; height: 68px; display: flex; align-items: center; gap: 32px; }
+  .logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .logo-icon { width: 38px; height: 38px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-icon svg { color: #fff; }
+  .logo-text { line-height: 1.1; }
+  .logo-text span:first-child { font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: -.5px; display: block; }
+  .logo-text span:last-child { font-size: 11px; font-weight: 600; color: var(--gray-600); letter-spacing: 1.5px; text-transform: uppercase; display: block; }
+
+  nav { display: flex; gap: 4px; flex: 1; }
+  .nav-link { padding: 6px 14px; border-radius: 6px; font-size: 14px; font-weight: 500; color: var(--gray-800); transition: all .2s; cursor: pointer; position: relative; }
+  .nav-link:hover, .nav-link.active { color: var(--blue); background: var(--blue-light); }
+  .nav-link.active::after { content: ''; position: absolute; bottom: -21px; left: 50%; transform: translateX(-50%); width: 24px; height: 2px; background: var(--blue); border-radius: 2px; }
+
+  .search-bar { flex: 0 0 260px; position: relative; }
+  .search-bar input { width: 100%; padding: 9px 36px 9px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-size: 13.5px; background: var(--gray-50); color: var(--gray-800); transition: border-color .2s; }
+  .search-bar input:focus { outline: none; border-color: var(--blue); background: #fff; }
+  .search-bar svg { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--gray-400); }
+
+  .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  .icon-btn { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--gray-600); background: transparent; transition: all .2s; position: relative; }
+  .icon-btn:hover { background: var(--gray-100); color: var(--blue); }
+  .cart-badge { position: absolute; top: 4px; right: 4px; background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; width: 17px; height: 17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  /* ─── Pages ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ═══════════════════════════════════════
+     HOME PAGE
+  ═══════════════════════════════════════ */
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #e8f0fd 0%, #f0f4ff 60%, #e8edff 100%); padding: 60px 0 0; overflow: hidden; position: relative; }
+  .hero::before { content: ''; position: absolute; right: 0; top: 0; width: 60%; height: 100%; background: radial-gradient(ellipse at 80% 50%, rgba(26,86,219,.07) 0%, transparent 70%); pointer-events: none; }
+  .hero-inner { max-width: 1280px; margin: auto; padding: 0 24px; display: flex; align-items: center; gap: 48px; min-height: 380px; }
+  .hero-copy { flex: 0 0 420px; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--blue-light); color: var(--blue); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
+  .hero-eyebrow span { width: 6px; height: 6px; background: var(--blue); border-radius: 50%; display: block; }
+  .hero-h1 { font-size: 44px; font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 16px; }
+  .hero-h1 em { color: var(--blue); font-style: normal; }
+  .hero-sub { font-size: 15.5px; color: var(--gray-600); line-height: 1.65; margin-bottom: 28px; }
+  .hero-btns { display: flex; gap: 12px; align-items: center; }
+  .btn-primary { background: var(--blue); color: #fff; padding: 13px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; letter-spacing: .3px; transition: all .2s; box-shadow: 0 4px 14px rgba(26,86,219,.3); }
+  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,86,219,.35); }
+  .btn-secondary { color: var(--blue); font-size: 14px; font-weight: 600; padding: 13px 20px; border-radius: 8px; border: 1.5px solid var(--blue); transition: all .2s; }
+  .btn-secondary:hover { background: var(--blue-light); }
+  .hero-images { flex: 1; position: relative; height: 340px; }
+  .hero-img-main { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 420px; filter: drop-shadow(0 20px 40px rgba(26,86,219,.18)); animation: float 4s ease-in-out infinite; }
+  .hero-img-back { position: absolute; bottom: 20px; right: 0; width: 280px; opacity: .7; filter: drop-shadow(0 10px 20px rgba(0,0,0,.1)); }
+  @keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-12px); } }
+  .hero-dots { max-width: 1280px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 8px; }
+  .hero-dot { width: 28px; height: 6px; border-radius: 3px; background: var(--gray-200); transition: all .3s; }
+  .hero-dot.active { background: var(--blue); width: 36px; }
+
+  /* Trust strip */
+  .trust-strip { border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); background: #fff; }
+  .trust-inner { max-width: 1280px; margin: auto; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .trust-item { display: flex; align-items: center; gap: 14px; padding: 22px 24px; border-right: 1px solid var(--gray-200); }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--gray-200); display: flex; align-items: center; justify-content: center; color: var(--blue); flex-shrink: 0; }
+  .trust-text strong { font-size: 13.5px; font-weight: 700; display: block; margin-bottom: 2px; }
+  .trust-text span { font-size: 12px; color: var(--gray-600); }
+
+  /* Section */
+  .section { max-width: 1280px; margin: auto; padding: 60px 24px; }
+  .section-head { text-align: center; margin-bottom: 40px; }
+  .section-head h2 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 8px; }
+  .section-head p { color: var(--gray-600); font-size: 15px; }
+  .section-rule { width: 48px; height: 3px; background: var(--blue); border-radius: 2px; margin: 12px auto 0; }
+
+  /* Category cards */
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cat-card { border: 1.5px solid var(--gray-200); border-radius: var(--radius); padding: 24px 20px; display: flex; align-items: center; gap: 16px; transition: all .25s; cursor: pointer; }
+  .cat-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .cat-card img { width: 80px; height: 60px; object-fit: contain; }
+  .cat-info strong { font-size: 14.5px; font-weight: 700; display: block; margin-bottom: 3px; }
+  .cat-info span { font-size: 12px; color: var(--gray-600); display: block; margin-bottom: 8px; }
+  .cat-link { font-size: 12px; color: var(--blue); font-weight: 600; }
+
+  /* Featured products */
+  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .product-card { border: 1.5px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: all .25s; position: relative; background: #fff; }
+  .product-card:hover { border-color: var(--blue); box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .product-img { background: var(--gray-50); padding: 20px; height: 180px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .product-img img { max-height: 140px; object-fit: contain; transition: transform .3s; }
+  .product-card:hover .product-img img { transform: scale(1.05); }
+  .badge { position: absolute; top: 10px; left: 10px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: .5px; }
+  .badge-new { background: var(--blue); color: #fff; }
+  .badge-sale { background: var(--red); color: #fff; }
+  .product-actions { position: absolute; top: 10px; right: 10px; display: flex; flex-direction: column; gap: 6px; opacity: 0; transition: opacity .2s; }
+  .product-card:hover .product-actions { opacity: 1; }
+  .product-action-btn { width: 30px; height: 30px; border-radius: 6px; background: #fff; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; color: var(--gray-600); transition: all .2s; }
+  .product-action-btn:hover { color: var(--blue); border-color: var(--blue); }
+  .product-body { padding: 16px; }
+  .product-name { font-size: 14.5px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+  .product-specs { font-size: 12px; color: var(--gray-600); margin-bottom: 10px; line-height: 1.5; }
+  .product-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
+  .stars { color: var(--yellow); font-size: 13px; letter-spacing: 1px; }
+  .rating-count { font-size: 12px; color: var(--gray-600); }
+  .product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .price-now { font-size: 17px; font-weight: 800; color: var(--gray-800); }
+  .price-was { font-size: 13px; color: var(--gray-400); text-decoration: line-through; }
+  .price-sale { font-size: 12px; color: var(--red); font-weight: 600; }
+  .btn-cart { width: 100%; background: var(--blue); color: #fff; padding: 10px; border-radius: 7px; font-size: 13.5px; font-weight: 700; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .btn-cart:hover { background: var(--blue-dark); }
+
+  /* ═══════════════════════════════════════
+     SHOP PAGE
+  ═══════════════════════════════════════ */
+  .shop-page { background: var(--gray-50); min-height: 80vh; }
+  .shop-header { background: #fff; border-bottom: 1px solid var(--gray-200); }
+  .shop-header-inner { max-width: 1280px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .shop-header h1 { font-size: 22px; font-weight: 800; }
+  .breadcrumb { font-size: 13px; color: var(--gray-600); margin-top: 3px; }
+  .breadcrumb span { color: var(--gray-800); }
+  .free-ship-badge { background: var(--blue-light); color: var(--blue); font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px; display: flex; align-items: center; gap: 8px; }
+
+  .shop-layout { max-width: 1280px; margin: auto; padding: 28px 24px; display: grid; grid-template-columns: 220px 1fr; gap: 28px; }
+
+  /* Sidebar */
+  .sidebar { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 22px; height: fit-content; position: sticky; top: 90px; }
+  .sidebar h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-600); margin-bottom: 12px; }
+  .cat-list a { display: flex; justify-content: space-between; padding: 7px 8px; border-radius: 6px; font-size: 13.5px; color: var(--gray-800); transition: all .2s; cursor: pointer; }
+  .cat-list a:hover, .cat-list a.active { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .cat-list a span { color: var(--gray-400); font-size: 12px; }
+  .sidebar-divider { height: 1px; background: var(--gray-200); margin: 18px 0; }
+  .filter-section { margin-bottom: 20px; }
+  .price-range { display: flex; flex-direction: column; gap: 8px; }
+  .price-range input[type=range] { width: 100%; accent-color: var(--blue); }
+  .price-labels { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--gray-600); font-weight: 600; }
+  .brand-list label { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 13.5px; cursor: pointer; }
+  .brand-list input[type=checkbox] { accent-color: var(--blue); width: 14px; height: 14px; }
+  .brand-count { color: var(--gray-400); font-size: 12px; margin-left: auto; }
+
+  /* Shop main */
+  .shop-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .results-count { font-size: 13.5px; color: var(--gray-600); }
+  .sort-group { display: flex; align-items: center; gap: 10px; }
+  .sort-select { padding: 7px 12px; border: 1.5px solid var(--gray-200); border-radius: 7px; font-size: 13px; color: var(--gray-800); background: #fff; cursor: pointer; }
+  .view-toggle { display: flex; gap: 4px; }
+  .view-btn { width: 34px; height: 34px; border-radius: 6px; border: 1.5px solid var(--gray-200); background: #fff; display: flex; align-items: center; justify-content: center; color: var(--gray-600); transition: all .2s; cursor: pointer; }
+  .view-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  /* ═══════════════════════════════════════
+     PRODUCT PAGE
+  ═══════════════════════════════════════ */
+  .product-page { background: var(--gray-50); }
+  .product-page-inner { max-width: 1280px; margin: auto; padding: 24px; }
+  .product-layout { display: grid; grid-template-columns: 1fr 1.1fr 340px; gap: 32px; align-items: start; background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 32px; }
+
+  /* Gallery */
+  .gallery { display: flex; gap: 12px; }
+  .thumbs { display: flex; flex-direction: column; gap: 8px; }
+  .thumb { width: 68px; height: 68px; border-radius: 7px; border: 2px solid var(--gray-200); cursor: pointer; display: flex; align-items: center; justify-content: center; background: var(--gray-50); padding: 4px; transition: border-color .2s; overflow: hidden; }
+  .thumb.active, .thumb:hover { border-color: var(--blue); }
+  .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .main-img-wrap { flex: 1; background: var(--gray-50); border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 24px; display: flex; align-items: center; justify-content: center; min-height: 340px; position: relative; }
+  .main-img-wrap img { max-height: 280px; object-fit: contain; }
+  .zoom-btn { position: absolute; bottom: 12px; right: 12px; width: 34px; height: 34px; border-radius: 7px; background: #fff; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; color: var(--gray-600); transition: all .2s; }
+  .zoom-btn:hover { color: var(--blue); }
+
+  /* Product info */
+  .prod-badge-new { display: inline-block; background: var(--blue); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px; }
+  .prod-title { font-size: 26px; font-weight: 800; line-height: 1.2; margin-bottom: 10px; letter-spacing: -.5px; }
+  .prod-rating { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
+  .prod-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 18px; }
+  .prod-price-big { font-size: 30px; font-weight: 800; color: var(--gray-800); margin-bottom: 6px; }
+  .stock-tag { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--green); margin-bottom: 20px; }
+  .stock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .spec-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .spec-row { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; }
+  .spec-row svg { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+  .spec-label { color: var(--gray-600); }
+  .spec-val { font-weight: 600; color: var(--gray-800); }
+  .view-specs { color: var(--blue); font-size: 13.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 20px; cursor: pointer; }
+
+  /* Buy box */
+  .buy-box { border: 1.5px solid var(--gray-200); border-radius: var(--radius); padding: 22px; }
+  .qty-row { margin-bottom: 16px; }
+  .qty-label { font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
+  .qty-ctrl { display: flex; align-items: center; gap: 0; border: 1.5px solid var(--gray-200); border-radius: 8px; overflow: hidden; width: fit-content; }
+  .qty-ctrl button { width: 36px; height: 36px; background: var(--gray-50); font-size: 18px; font-weight: 600; color: var(--gray-800); transition: all .2s; }
+  .qty-ctrl button:hover { background: var(--blue-light); color: var(--blue); }
+  .qty-ctrl span { width: 44px; text-align: center; font-size: 15px; font-weight: 700; border-left: 1px solid var(--gray-200); border-right: 1px solid var(--gray-200); height: 36px; display: flex; align-items: center; justify-content: center; }
+  .btn-add-cart { width: 100%; background: var(--blue); color: #fff; padding: 13px; border-radius: 8px; font-size: 15px; font-weight: 700; margin-bottom: 10px; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-add-cart:hover { background: var(--blue-dark); }
+  .btn-buy-now { width: 100%; background: #fff; color: var(--blue); border: 1.5px solid var(--blue); padding: 12px; border-radius: 8px; font-size: 15px; font-weight: 700; margin-bottom: 14px; transition: all .2s; }
+  .btn-buy-now:hover { background: var(--blue-light); }
+  .wishlist-compare { display: flex; gap: 16px; margin-bottom: 16px; }
+  .wc-btn { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 500; color: var(--gray-600); transition: color .2s; cursor: pointer; }
+  .wc-btn:hover { color: var(--blue); }
+  .buy-perks { display: flex; flex-direction: column; gap: 10px; padding-top: 16px; border-top: 1px solid var(--gray-200); }
+  .perk { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; }
+  .perk svg { color: var(--blue); flex-shrink: 0; margin-top: 1px; }
+  .perk strong { display: block; font-weight: 600; margin-bottom: 1px; }
+  .perk span { color: var(--gray-600); font-size: 12px; }
+
+  /* Tabs */
+  .product-tabs-wrap { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 0 24px; margin-top: 24px; }
+  .tabs { display: flex; border-bottom: 1px solid var(--gray-200); }
+  .tab { padding: 16px 20px; font-size: 14px; font-weight: 600; color: var(--gray-600); cursor: pointer; border-bottom: 2.5px solid transparent; margin-bottom: -1px; transition: all .2s; }
+  .tab.active, .tab:hover { color: var(--blue); border-bottom-color: var(--blue); }
+  .tab-content { padding: 24px 0; font-size: 14px; color: var(--gray-600); line-height: 1.8; display: none; }
+  .tab-content.active { display: block; }
+
+  /* ═══════════════════════════════════════
+     CART PAGE
+  ═══════════════════════════════════════ */
+  .cart-page { background: var(--gray-50); min-height: 80vh; }
+  .cart-inner { max-width: 1280px; margin: auto; padding: 32px 24px; display: grid; grid-template-columns: 1fr 340px; gap: 28px; align-items: start; }
+  .cart-title { font-size: 22px; font-weight: 800; margin-bottom: 20px; }
+  .cart-title span { font-size: 16px; color: var(--gray-600); font-weight: 500; }
+  .cart-continue { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--gray-600); padding: 8px 14px; border: 1.5px solid var(--gray-200); border-radius: 8px; background: #fff; transition: all .2s; cursor: pointer; float: right; font-weight: 500; }
+  .cart-continue:hover { border-color: var(--blue); color: var(--blue); }
+  .cart-table { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; }
+  .cart-table-head { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr .8fr; padding: 14px 20px; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); font-size: 13px; font-weight: 700; color: var(--gray-600); text-transform: uppercase; letter-spacing: .5px; }
+  .cart-row { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr .8fr; padding: 20px; border-bottom: 1px solid var(--gray-200); align-items: center; }
+  .cart-row:last-child { border-bottom: none; }
+  .cart-prod { display: flex; gap: 14px; align-items: center; }
+  .cart-prod-img { width: 72px; height: 72px; background: var(--gray-50); border-radius: 7px; border: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: center; padding: 6px; }
+  .cart-prod-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .cart-prod-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .cart-prod-sub { font-size: 12px; color: var(--gray-600); line-height: 1.5; }
+  .in-stock { font-size: 12px; color: var(--green); font-weight: 600; display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+  .in-stock::before { content: '✓'; }
+  .cart-price { font-size: 15px; font-weight: 600; }
+  .cart-subtotal { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+  .cart-actions-col { display: flex; flex-direction: column; gap: 6px; }
+  .cart-remove { font-size: 12.5px; color: var(--red); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: opacity .2s; }
+  .cart-remove:hover { opacity: .7; }
+  .cart-save { font-size: 12.5px; color: var(--gray-600); font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .cart-footer { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; }
+  .btn-clear { font-size: 13px; color: var(--red); font-weight: 600; display: flex; align-items: center; gap: 5px; padding: 8px 14px; border: 1.5px solid #fecaca; border-radius: 7px; background: #fff9f9; cursor: pointer; transition: all .2s; }
+  .btn-clear:hover { background: #fee2e2; }
+  .btn-update { font-size: 13px; color: var(--blue); font-weight: 600; display: flex; align-items: center; gap: 5px; padding: 8px 14px; border: 1.5px solid var(--blue); border-radius: 7px; background: #fff; cursor: pointer; transition: all .2s; }
+  .btn-update:hover { background: var(--blue-light); }
+
+  /* Order summary */
+  .order-summary { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 22px; }
+  .order-summary h3 { font-size: 16px; font-weight: 800; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
+  .summary-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 10px; }
+  .summary-row.total { font-size: 17px; font-weight: 800; padding-top: 12px; border-top: 1.5px solid var(--gray-800); margin-top: 4px; }
+  .free-ship-bar { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px 14px; margin: 14px 0; font-size: 13px; color: var(--green); }
+  .free-ship-bar strong { font-weight: 700; }
+  .ship-progress { height: 5px; background: #dcfce7; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  .ship-progress-fill { height: 100%; background: var(--green); border-radius: 3px; width: 72%; }
+  .ship-remaining { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-600); margin-top: 4px; }
+  .btn-checkout { width: 100%; background: var(--blue); color: #fff; padding: 14px; border-radius: 8px; font-size: 15px; font-weight: 700; margin-bottom: 10px; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .btn-checkout:hover { background: var(--blue-dark); }
+  .btn-paypal { width: 100%; background: #ffc439; color: #003087; padding: 13px; border-radius: 8px; font-size: 15px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .secure-note { text-align: center; font-size: 12px; color: var(--gray-600); display: flex; align-items: center; justify-content: center; gap: 4px; }
+
+  /* You may also like */
+  .also-like { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); padding: 22px; margin-top: 24px; }
+  .also-like h3 { font-size: 15px; font-weight: 800; margin-bottom: 16px; }
+  .also-like-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .also-card { text-align: center; cursor: pointer; }
+  .also-card:hover .also-card-img { border-color: var(--blue); }
+  .also-card-img { border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 10px; background: var(--gray-50); height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; transition: border-color .2s; }
+  .also-card-img img { max-height: 60px; object-fit: contain; }
+  .also-card-name { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+  .also-card-price { font-size: 12px; color: var(--blue); font-weight: 700; }
+  .also-card-btn { width: 100%; margin-top: 6px; background: var(--blue-light); color: var(--blue); font-size: 11.5px; font-weight: 700; padding: 5px 0; border-radius: 5px; transition: all .2s; }
+  .also-card-btn:hover { background: var(--blue); color: #fff; }
+
+  /* ─── Footer ─── */
+  footer { background: #0f172a; color: #94a3b8; padding: 50px 0 0; margin-top: 60px; }
+  .footer-inner { max-width: 1280px; margin: auto; padding: 0 24px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 40px; }
+  .footer-brand p { font-size: 13px; line-height: 1.7; margin: 12px 0 18px; }
+  .social-row { display: flex; gap: 10px; }
+  .social-btn { width: 34px; height: 34px; border-radius: 7px; background: #1e293b; display: flex; align-items: center; justify-content: center; color: #94a3b8; font-size: 14px; transition: all .2s; }
+  .social-btn:hover { background: var(--blue); color: #fff; }
+  .footer-col h4 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #e2e8f0; margin-bottom: 14px; }
+  .footer-col a { display: block; font-size: 13.5px; color: #64748b; padding: 4px 0; transition: color .2s; cursor: pointer; }
+  .footer-col a:hover { color: #fff; }
+  .newsletter-input-row { display: flex; gap: 8px; margin-top: 10px; }
+  .newsletter-input-row input { flex: 1; padding: 9px 13px; border-radius: 7px; border: none; background: #1e293b; color: #fff; font-size: 13px; }
+  .newsletter-input-row input::placeholder { color: #475569; }
+  .newsletter-input-row button { background: var(--blue); color: #fff; padding: 9px 16px; border-radius: 7px; font-size: 13px; font-weight: 700; transition: all .2s; }
+  .newsletter-input-row button:hover { background: var(--blue-dark); }
+  .footer-bottom { max-width: 1280px; margin: 40px auto 0; padding: 18px 24px; border-top: 1px solid #1e293b; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 13px; }
+  .payment-icons { display: flex; gap: 8px; }
+  .pay-icon { background: #fff; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 800; color: #0f172a; }
+
+  /* ─── Toast ─── */
+  #toast { position: fixed; bottom: 28px; right: 28px; background: var(--gray-800); color: #fff; padding: 14px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; z-index: 9999; transform: translateY(20px); opacity: 0; transition: all .3s; pointer-events: none; box-shadow: var(--shadow-lg); }
+  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast svg { color: #4ade80; }
+
+  /* ─── Laptop SVG placeholders ─── */
+  .laptop-svg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>🚚 Free shipping on all orders over $999 &nbsp;|&nbsp; 7 Days Easy Returns</span>
+    <div class="topbar-right">
+      <a href="#">Store Location</a>
+      <a href="#">Track Your Order</a>
+      <a href="#">Help &amp; Support</a>
+      <span>USD ▾</span>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">
+      <div class="logo-icon">
+        <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <div class="logo-text">
+        <span>LAPTOP</span>
+        <span>STORE</span>
+      </div>
+    </div>
+
+    <nav>
+      <a class="nav-link active" id="nav-home" onclick="showPage('home')">Home</a>
+      <a class="nav-link" id="nav-shop" onclick="showPage('shop')">Shop ▾</a>
+      <a class="nav-link" onclick="showPage('shop')">Laptops ▾</a>
+      <a class="nav-link" onclick="showPage('shop')">Accessories ▾</a>
+      <a class="nav-link" onclick="showPage('shop')">Deals</a>
+      <a class="nav-link" onclick="showPage('home')">About Us</a>
+      <a class="nav-link" onclick="showPage('home')">Contact Us</a>
+    </nav>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search products..." />
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-btn" title="Account">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </button>
+      <button class="icon-btn" title="Wishlist">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="icon-btn" title="Cart" onclick="showPage('cart')" style="position:relative">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cart-count">2</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HOME PAGE ═══ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-eyebrow"><span></span> New Arrivals 2026</div>
+        <h1 class="hero-h1">Best Laptops<br><em>For Every Need</em></h1>
+        <p class="hero-sub">Explore the best laptops for gaming, business,<br>students and everyday use.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('shop')">SHOP NOW</button>
+          <button class="btn-secondary" onclick="showPage('shop')">Browse Categories</button>
+        </div>
+      </div>
+      <div class="hero-images">
+        <svg class="hero-img-main" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="10" width="380" height="230" rx="14" fill="#1a1a2e"/>
+          <rect x="30" y="18" width="360" height="210" rx="10" fill="#0f0f23"/>
+          <defs>
+            <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366f1"/>
+              <stop offset="50%" stop-color="#ec4899"/>
+              <stop offset="100%" stop-color="#f59e0b"/>
+            </linearGradient>
+          </defs>
+          <rect x="36" y="24" width="348" height="198" rx="7" fill="url(#screenGrad)" opacity=".9"/>
+          <ellipse cx="210" cy="130" rx="90" ry="70" fill="#fff" opacity=".08"/>
+          <path d="M130 200 Q210 120 290 200" fill="none" stroke="#fff" stroke-width="3" opacity=".2"/>
+          <circle cx="210" cy="130" r="40" fill="#fff" opacity=".06"/>
+          <rect x="0" y="240" width="420" height="20" rx="5" fill="#2d2d4e"/>
+          <rect x="130" y="240" width="160" height="10" rx="5" fill="#3a3a5c"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-dots">
+      <div class="hero-dot active"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+      <div class="hero-dot"></div>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="trust-text"><strong>FREE SHIPPING</strong><span>On order above $999</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div class="trust-text"><strong>1 YEAR WARRANTY</strong><span>On all products</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M8 12h4"/></svg></div>
+        <div class="trust-text"><strong>MONEY BACK</strong><span>Back guarantee under 7 days</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.16h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.86a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/></svg></div>
+        <div class="trust-text"><strong>ONLINE SUPPORT</strong><span>Support online 24/7</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shop by Category -->
+  <div class="section">
+    <div class="section-head">
+      <h2>SHOP BY CATEGORY</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card" onclick="showPage('shop')">
+        <svg width="80" height="60" viewBox="0 0 80 60" fill="none"><rect x="5" y="5" width="70" height="44" rx="5" fill="#1a1a2e"/><rect x="8" y="8" width="64" height="38" rx="3" fill="#0f0f23"/><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect x="10" y="10" width="60" height="34" rx="2" fill="url(#g1)" opacity=".8"/><path d="M35 40 Q40 35 45 40" fill="none" stroke="#fff" stroke-width="1.5" opacity=".4"/><rect x="5" y="49" width="70" height="8" rx="3" fill="#2d2d4e"/><rect x="25" y="52" width="30" height="4" rx="2" fill="#3a3a5c"/></svg>
+        <div class="cat-info">
+          <strong>Gaming Laptops</strong>
+          <span>High performance</span>
+          <a class="cat-link" onclick="showPage('shop')">SHOP NOW →</a>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <svg width="80" height="60" viewBox="0 0 80 60" fill="none"><rect x="5" y="5" width="70" height="44" rx="5" fill="#1e293b"/><rect x="8" y="8" width="64" height="38" rx="3" fill="#f8fafc"/><defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="10" y="10" width="60" height="34" rx="2" fill="url(#g2)" opacity=".9"/><rect x="5" y="49" width="70" height="8" rx="3" fill="#334155"/><rect x="25" y="52" width="30" height="4" rx="2" fill="#475569"/></svg>
+        <div class="cat-info">
+          <strong>Business Laptops</strong>
+          <span>Powerful &amp; reliable</span>
+          <a class="cat-link" onclick="showPage('shop')">SHOP NOW →</a>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <svg width="80" height="60" viewBox="0 0 80 60" fill="none"><rect x="5" y="5" width="70" height="44" rx="5" fill="#1e293b"/><rect x="8" y="8" width="64" height="38" rx="3" fill="#f0f4ff"/><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a56db"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient></defs><rect x="10" y="10" width="60" height="34" rx="2" fill="url(#g3)" opacity=".85"/><rect x="5" y="49" width="70" height="8" rx="3" fill="#334155"/><rect x="25" y="52" width="30" height="4" rx="2" fill="#475569"/></svg>
+        <div class="cat-info">
+          <strong>Student Laptops</strong>
+          <span>Study with ease</span>
+          <a class="cat-link" onclick="showPage('shop')">SHOP NOW →</a>
+        </div>
+      </div>
+      <div class="cat-card" onclick="showPage('shop')">
+        <svg width="80" height="60" viewBox="0 0 80 60" fill="none"><circle cx="30" cy="30" r="22" fill="#1e293b"/><circle cx="30" cy="30" r="18" fill="#334155"/><circle cx="30" cy="30" r="10" fill="#475569"/><rect x="55" y="10" width="18" height="12" rx="3" fill="#1e293b"/><rect x="57" y="12" width="14" height="8" rx="2" fill="#3b82f6" opacity=".8"/><circle cx="63" cy="42" r="10" fill="#94a3b8"/><circle cx="63" cy="42" r="6" fill="#64748b"/></svg>
+        <div class="cat-info">
+          <strong>Accessories</strong>
+          <span>Laptops &amp; more</span>
+          <a class="cat-link" onclick="showPage('shop')">SHOP NOW →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Products -->
+  <div class="section" style="padding-top:0">
+    <div class="section-head">
+      <h2>FEATURED PRODUCTS</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="product-grid" id="home-products"></div>
+  </div>
+
+</div><!-- end home -->
+
+<!-- ═══ SHOP PAGE ═══ -->
+<div class="page" id="page-shop">
+  <div class="shop-page">
+    <div class="shop-header">
+      <div class="shop-header-inner">
+        <div>
+          <h1>Shop</h1>
+          <div class="breadcrumb">Home › <span>Shop</span></div>
+        </div>
+        <div class="free-ship-badge">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free Shipping – On all orders over $999
+        </div>
+      </div>
+    </div>
+    <div class="shop-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>Categories</h3>
+        <div class="cat-list">
+          <a class="active" onclick="filterCat('all')">All Laptops <span>(24)</span></a>
+          <a onclick="filterCat('gaming')">Gaming Laptops <span>(8)</span></a>
+          <a onclick="filterCat('business')">Business Laptops <span>(7)</span></a>
+          <a onclick="filterCat('student')">Student Laptops <span>(6)</span></a>
+          <a onclick="filterCat('2in1')">2-in-1 Laptops <span>(3)</span></a>
+          <a onclick="filterCat('refurb')">Refurbished Laptops <span>(4)</span></a>
+          <a onclick="filterCat('mac')">MacBooks <span>(5)</span></a>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="filter-section">
+          <h3>Filter by Price</h3>
+          <div class="price-range">
+            <input type="range" min="300" max="5000" value="5000" />
+            <div class="price-labels"><span>$300</span><span>$5000+</span></div>
+          </div>
+        </div>
+        <div class="sidebar-divider"></div>
+        <div class="filter-section">
+          <h3>Brand</h3>
+          <div class="brand-list">
+            <label><input type="checkbox"> Apple <span class="brand-count">(5)</span></label>
+            <label><input type="checkbox"> Dell <span class="brand-count">(6)</span></label>
+            <label><input type="checkbox"> HP <span class="brand-count">(5)</span></label>
+            <label><input type="checkbox"> Lenovo <span class="brand-count">(6)</span></label>
+            <label><input type="checkbox"> Asus <span class="brand-count">(4)</span></label>
+            <label><input type="checkbox"> Acer <span class="brand-count">(3)</span></label>
+            <label><input type="checkbox"> MSI <span class="brand-count">(3)</span></label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div>
+        <div class="shop-toolbar">
+          <div class="results-count">Showing 1–12 of <strong>24</strong> results</div>
+          <div class="sort-group">
+            <select class="sort-select">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+              <option>Best Rated</option>
+            </select>
+            <div class="view-toggle">
+              <button class="view-btn active"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></button>
+              <button class="view-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-grid" id="shop-products"></div>
+      </div>
+    </div>
+  </div>
+</div><!-- end shop -->
+
+<!-- ═══ PRODUCT PAGE ═══ -->
+<div class="page" id="page-product">
+  <div class="product-page">
+    <div class="product-page-inner">
+      <div style="margin-bottom:16px">
+        <span style="font-size:13px;color:var(--gray-600);cursor:pointer" onclick="showPage('shop')">← Home › Shop › Laptops › </span>
+        <span style="font-size:13px;font-weight:600">ASUS ROG Strix G16</span>
+      </div>
+      <div class="product-layout">
+        <!-- Gallery -->
+        <div class="gallery">
+          <div class="thumbs" id="prod-thumbs"></div>
+          <div class="main-img-wrap">
+            <svg id="prod-main-img" width="300" height="260" viewBox="0 0 300 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="280" height="180" rx="12" fill="#1a1a2e"/>
+              <rect x="15" y="15" width="270" height="170" rx="8" fill="#0f0f23"/>
+              <defs><radialGradient id="rg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#a855f7"/><stop offset="50%" stop-color="#ec4899"/><stop offset="100%" stop-color="#3b82f6"/></radialGradient></defs>
+              <rect x="18" y="18" width="264" height="164" rx="5" fill="url(#rg1)" opacity=".9"/>
+              <circle cx="150" cy="100" r="50" fill="#fff" opacity=".05"/>
+              <path d="M90 130 Q150 60 210 130" fill="#fff" opacity=".07" stroke="#fff" stroke-width="2"/>
+              <rect x="0" y="190" width="300" height="16" rx="5" fill="#2d2d4e"/>
+              <rect x="90" y="193" width="120" height="8" rx="4" fill="#3a3a5c"/>
+              <rect x="0" y="205" width="300" height="12" rx="2" fill="#1a1a2e"/>
+            </svg>
+            <button class="zoom-btn"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div>
+          <span class="prod-badge-new">New</span>
+          <h1 class="prod-title">ASUS ROG Strix G16</h1>
+          <div class="prod-rating">
+            <span class="stars">★★★★½</span>
+            <span style="font-size:14px;font-weight:600">4.5</span>
+            <span style="font-size:13px;color:var(--gray-600)">(128 reviews)</span>
+            <span style="font-size:13px;color:var(--blue);margin-left:4px;cursor:pointer">Add your review</span>
+          </div>
+          <p class="prod-desc">Powerful performance meets next-gen gaming. Dominate the game with the latest 13th Gen Intel Core i7 processor and RTX 4050 graphics.</p>
+          <div class="prod-price-big">$1,399.00</div>
+          <div class="stock-tag"><span class="stock-dot"></span> In Stock</div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/></svg>
+              <div><span class="spec-label">Processor: </span><span class="spec-val">Intel Core i7-13650HX (13th Gen)</span></div>
+            </div>
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12h20M2 12l4-4M2 12l4 4M22 12l-4-4M22 12l-4 4"/></svg>
+              <div><span class="spec-label">RAM: </span><span class="spec-val">16GB DDR5</span></div>
+            </div>
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="6"/><path d="M2 12v6c0 3.31 4.48 6 10 6s10-2.69 10-6v-6"/></svg>
+              <div><span class="spec-label">Storage: </span><span class="spec-val">512GB SSD</span></div>
+            </div>
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <div><span class="spec-label">Graphics: </span><span class="spec-val">NVIDIA GeForce RTX 4050 6GB</span></div>
+            </div>
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <div><span class="spec-label">Display: </span><span class="spec-val">16" FHD+ (1920×1200) 165Hz</span></div>
+            </div>
+            <div class="spec-row">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <div><span class="spec-label">OS: </span><span class="spec-val">Windows 11 Home</span></div>
+            </div>
+          </div>
+          <a class="view-specs">View full specifications ▾</a>
+        </div>
+
+        <!-- Buy Box -->
+        <div class="buy-box">
+          <div class="qty-row">
+            <span class="qty-label">Quantity:</span>
+            <div class="qty-ctrl">
+              <button onclick="changeQty(-1)">−</button>
+              <span id="qty-val">1</span>
+              <button onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <button class="btn-add-cart" onclick="addToCart('ASUS ROG Strix G16', 1399)">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Add to Cart
+          </button>
+          <button class="btn-buy-now">Buy Now</button>
+          <div class="wishlist-compare">
+            <button class="wc-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Add to Wishlist</button>
+            <button class="wc-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Compare</button>
+          </div>
+          <div class="buy-perks">
+            <div class="perk"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div><strong>Free Shipping</strong><span>On all orders over $999</span></div></div>
+            <div class="perk"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><div><strong>7 Days Easy Returns</strong><span>Return or exchange within 7 days</span></div></div>
+            <div class="perk"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div><strong>1 Year Warranty</strong><span>On all products</span></div></div>
+            <div class="perk"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><div><strong>Secure Payment</strong><span>100% secure payment</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="product-tabs-wrap">
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab(this,'desc')">Description</div>
+          <div class="tab" onclick="switchTab(this,'specs')">Specifications</div>
+          <div class="tab" onclick="switchTab(this,'reviews')">Reviews (128)</div>
+          <div class="tab" onclick="switchTab(this,'qa')">Q&amp;A</div>
+          <div class="tab" onclick="switchTab(this,'ship')">Shipping &amp; Returns</div>
+        </div>
+        <div class="tab-content active" id="tab-desc">
+          <p>The ASUS ROG Strix G16 is built for gamers and creators who demand the best. Powered by the 13th Gen Intel Core i7 processor and NVIDIA GeForce RTX 4050 graphics, it delivers exceptional performance for gaming, streaming, and content creation. Featuring a 16-inch FHD+ 165Hz display, advanced cooling system, and customizable RGB keyboard.</p>
+        </div>
+        <div class="tab-content" id="tab-specs">
+          <p><strong>Full Specifications:</strong><br>Processor: Intel Core i7-13650HX (13th Gen, 4.9GHz Turbo)<br>RAM: 16GB DDR5-4800MHz<br>Storage: 512GB PCIe 4.0 NVMe SSD<br>GPU: NVIDIA GeForce RTX 4050 6GB GDDR6<br>Display: 16" FHD+ 1920×1200 IPS 165Hz 3ms<br>Battery: 90Wh<br>Weight: 2.5kg</p>
+        </div>
+        <div class="tab-content" id="tab-reviews">
+          <p>⭐⭐⭐⭐⭐ <strong>Amazing gaming laptop!</strong> – "Best purchase I've made this year. Runs everything smoothly."<br><br>⭐⭐⭐⭐½ <strong>Great value</strong> – "Excellent performance for the price. RGB keyboard looks fantastic."</p>
+        </div>
+        <div class="tab-content" id="tab-qa">
+          <p><strong>Q: Does it support dual-channel RAM?</strong><br>A: Yes, it has two SODIMM slots supporting dual-channel DDR5.<br><br><strong>Q: Can the storage be upgraded?</strong><br>A: Yes, it has one M.2 2280 slot available for storage expansion.</p>
+        </div>
+        <div class="tab-content" id="tab-ship">
+          <p><strong>Free Shipping:</strong> On all orders over $999. Standard delivery 3-5 business days.<br><br><strong>Returns Policy:</strong> 7-day hassle-free returns. Item must be in original condition.<br><br><strong>Warranty:</strong> 1-year manufacturer warranty on all products.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end product -->
+
+<!-- ═══ CART PAGE ═══ -->
+<div class="page" id="page-cart">
+  <div class="cart-page">
+    <div class="cart-inner">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <h2 class="cart-title">Your Cart <span>(2 Items)</span></h2>
+          <button class="cart-continue" onclick="showPage('shop')">← Continue Shopping</button>
+        </div>
+        <div class="cart-table">
+          <div class="cart-table-head">
+            <span>Product</span><span>Price</span><span>Quantity</span><span>Subtotal</span><span>Action</span>
+          </div>
+          <!-- Row 1 -->
+          <div class="cart-row">
+            <div class="cart-prod">
+              <div class="cart-prod-img">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="2" y="5" width="56" height="38" rx="5" fill="#1a1a2e"/><rect x="4" y="7" width="52" height="34" rx="3" fill="#0f0f23"/><defs><radialGradient id="cg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#3b82f6"/></radialGradient></defs><rect x="5" y="8" width="50" height="32" rx="2" fill="url(#cg1)" opacity=".9"/><rect x="0" y="43" width="60" height="8" rx="3" fill="#2d2d4e"/><rect x="18" y="46" width="24" height="4" rx="2" fill="#3a3a5c"/></svg>
+              </div>
+              <div>
+                <div class="cart-prod-name">ASUS ROG Strix G16</div>
+                <div class="cart-prod-sub">Intel Core i7-13650HX | 16GB RAM<br>512GB SSD | RTX 4050 6GB</div>
+                <div class="in-stock">In Stock</div>
+              </div>
+            </div>
+            <div class="cart-price">$1,399.00</div>
+            <div>
+              <div class="qty-ctrl" style="width:fit-content">
+                <button onclick="this.nextElementSibling.textContent=Math.max(1,+this.nextElementSibling.textContent-1)">−</button>
+                <span>1</span>
+                <button onclick="this.previousElementSibling.textContent=+this.previousElementSibling.textContent+1">+</button>
+              </div>
+            </div>
+            <div class="cart-subtotal">$1,399.00</div>
+            <div class="cart-actions-col">
+              <span class="cart-remove">🗑 Remove</span>
+              <span class="cart-save">♡ Save for later</span>
+            </div>
+          </div>
+          <!-- Row 2 -->
+          <div class="cart-row">
+            <div class="cart-prod">
+              <div class="cart-prod-img">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="2" y="5" width="56" height="38" rx="5" fill="#1e293b"/><rect x="4" y="7" width="52" height="34" rx="3" fill="#f8fafc"/><defs><linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs><rect x="5" y="8" width="50" height="32" rx="2" fill="url(#cg2)" opacity=".9"/><rect x="0" y="43" width="60" height="8" rx="3" fill="#334155"/><rect x="18" y="46" width="24" height="4" rx="2" fill="#475569"/></svg>
+              </div>
+              <div>
+                <div class="cart-prod-name">Dell XPS 13 (9315)</div>
+                <div class="cart-prod-sub">Intel Core i7-1250U | 16GB RAM<br>512GB SSD | 13.4" FHD+</div>
+                <div class="in-stock">In Stock</div>
+              </div>
+            </div>
+            <div class="cart-price">$1,099.00</div>
+            <div>
+              <div class="qty-ctrl" style="width:fit-content">
+                <button onclick="this.nextElementSibling.textContent=Math.max(1,+this.nextElementSibling.textContent-1)">−</button>
+                <span>1</span>
+                <button onclick="this.previousElementSibling.textContent=+this.previousElementSibling.textContent+1">+</button>
+              </div>
+            </div>
+            <div class="cart-subtotal">$1,099.00</div>
+            <div class="cart-actions-col">
+              <span class="cart-remove">🗑 Remove</span>
+              <span class="cart-save">♡ Save for later</span>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div class="cart-footer">
+            <button class="btn-clear">🗑 Clear Cart</button>
+            <button class="btn-update">↺ Update Cart</button>
+          </div>
+        </div>
+
+        <!-- You May Also Like -->
+        <div class="also-like">
+          <h3>You May Also Like</h3>
+          <div class="also-like-grid">
+            <div class="also-card">
+              <div class="also-card-img"><svg width="70" height="55" viewBox="0 0 70 55" fill="none"><rect x="2" y="2" width="66" height="42" rx="5" fill="#1a1a2e"/><rect x="5" y="5" width="60" height="36" rx="3" fill="#dc2626" opacity=".8"/><text x="35" y="28" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">LEGION</text><rect x="0" y="44" width="70" height="8" rx="3" fill="#2d2d4e"/></svg></div>
+              <div class="also-card-name">Lenovo Legion 5 Pro</div>
+              <div class="also-card-price">$1,599.00</div>
+              <button class="also-card-btn" onclick="addToCart('Lenovo Legion 5 Pro', 1599)">Add to Cart</button>
+            </div>
+            <div class="also-card">
+              <div class="also-card-img"><svg width="70" height="55" viewBox="0 0 70 55" fill="none"><rect x="2" y="2" width="66" height="42" rx="5" fill="#1e293b"/><defs><linearGradient id="ag1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs><rect x="5" y="5" width="60" height="36" rx="3" fill="url(#ag1)" opacity=".9"/><rect x="0" y="44" width="70" height="8" rx="3" fill="#334155"/></svg></div>
+              <div class="also-card-name">HP Spectre x360 14</div>
+              <div class="also-card-price">$1,199.00</div>
+              <button class="also-card-btn" onclick="addToCart('HP Spectre x360', 1199)">Add to Cart</button>
+            </div>
+            <div class="also-card">
+              <div class="also-card-img"><svg width="70" height="55" viewBox="0 0 70 55" fill="none"><rect x="2" y="2" width="66" height="42" rx="5" fill="#1e293b"/><defs><linearGradient id="ag2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient></defs><rect x="5" y="5" width="60" height="36" rx="3" fill="url(#ag2)" opacity=".85"/><rect x="0" y="44" width="70" height="8" rx="3" fill="#334155"/></svg></div>
+              <div class="also-card-name">Acer Aspire 5</div>
+              <div class="also-card-price">$649.00</div>
+              <button class="also-card-btn" onclick="addToCart('Acer Aspire 5', 649)">Add to Cart</button>
+            </div>
+            <div class="also-card">
+              <div class="also-card-img"><svg width="70" height="55" viewBox="0 0 70 55" fill="none"><rect x="2" y="2" width="66" height="42" rx="5" fill="#1e293b"/><defs><linearGradient id="ag3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#ec4899"/></linearGradient></defs><rect x="5" y="5" width="60" height="36" rx="3" fill="url(#ag3)" opacity=".85"/><rect x="0" y="44" width="70" height="8" rx="3" fill="#334155"/></svg></div>
+              <div class="also-card-name">MacBook Air M2</div>
+              <div class="also-card-price">$1,049.00</div>
+              <button class="also-card-btn" onclick="addToCart('MacBook Air M2', 1049)">Add to Cart</button>
+            </div>
+            <div class="also-card">
+              <div class="also-card-img"><svg width="70" height="55" viewBox="0 0 70 55" fill="none"><rect x="2" y="2" width="66" height="42" rx="5" fill="#1e293b"/><defs><linearGradient id="ag4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient></defs><rect x="5" y="5" width="60" height="36" rx="3" fill="url(#ag4)" opacity=".85"/><rect x="0" y="44" width="70" height="8" rx="3" fill="#334155"/></svg></div>
+              <div class="also-card-name">ASUS VivoBook 15</div>
+              <div class="also-card-price">$499.00</div>
+              <button class="also-card-btn" onclick="addToCart('ASUS VivoBook 15', 499)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div>
+        <div class="order-summary">
+          <h3>Order Summary</h3>
+          <div class="summary-row"><span>Subtotal (2 Items)</span><span>$2,498.00</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:var(--green);font-weight:600">Free</span></div>
+          <div class="summary-row"><span>Estimated Tax</span><span>$199.84</span></div>
+          <div class="summary-row total"><span>Total</span><span>$2,697.84</span></div>
+          <div class="free-ship-bar">
+            🎉 <strong>You're eligible for FREE Shipping!</strong> Add $1.00 more to get free shipping.
+            <div class="ship-progress"><div class="ship-progress-fill"></div></div>
+            <div class="ship-remaining"><span></span><span>$1,000</span></div>
+          </div>
+          <button class="btn-checkout" onclick="showToast('Redirecting to checkout...')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Proceed to Checkout
+          </button>
+          <button class="btn-paypal">PayPal Checkout</button>
+          <div class="secure-note">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Secure 100% secure checkout
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end cart -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:30px;height:30px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <span style="font-weight:800;font-size:15px;color:#e2e8f0">LAPTOP STORE</span>
+      </div>
+      <p>Your one-stop shop for the best laptops and accessories. Quality products, best prices, and excellent service.</p>
+      <div class="social-row">
+        <a class="social-btn">f</a>
+        <a class="social-btn">t</a>
+        <a class="social-btn">in</a>
+        <a class="social-btn">ig</a>
+        <a class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a onclick="showPage('shop')">All Laptops</a>
+      <a onclick="showPage('shop')">Gaming Laptops</a>
+      <a onclick="showPage('shop')">Business Laptops</a>
+      <a onclick="showPage('shop')">Student Laptops</a>
+      <a onclick="showPage('shop')">Accessories</a>
+      <a onclick="showPage('shop')">Deals</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help &amp; Support</h4>
+      <a>Track Your Order</a>
+      <a>Shipping &amp; Delivery</a>
+      <a>Returns &amp; Refunds</a>
+      <a>Warranty Policy</a>
+      <a>FAQ</a>
+      <a>Support Center</a>
+    </div>
+    <div class="footer-col">
+      <h4>About Us</h4>
+      <a>About Us</a>
+      <a>Contact Us</a>
+      <a>Store Locator</a>
+      <a>Privacy Policy</a>
+      <a>Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:13px;line-height:1.6">Subscribe to get updates on new arrivals and exclusive offers.</p>
+      <div class="newsletter-input-row">
+        <input type="email" placeholder="Enter your email address">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Laptop Store. All Rights Reserved.</p>
+    <div class="payment-icons">
+      <span class="pay-icon" style="color:#1434CB">VISA</span>
+      <span class="pay-icon" style="color:#eb001b">MC</span>
+      <span class="pay-icon" style="color:#003087">PayPal</span>
+      <span class="pay-icon" style="color:#2557D6">AMEX</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast">
+  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toast-msg">Added to cart!</span>
+</div>
+
+<script>
+// ─── Data ───────────────────────────────────────────────
+const products = [
+  { id:1, name:"ASUS ROG Strix G16", specs:"Intel Core i7-13650HX | 16GB RAM\n512GB SSD | RTX 4050 6GB", price:1399, was:null, rating:4.5, reviews:128, badge:"new", cat:"gaming", colors:["#a855f7","#3b82f6"] },
+  { id:2, name:"Dell XPS 13 (9315)",  specs:"Intel Core i7-1250U | 16GB RAM\n512GB SSD | 13.4" FHD+", price:1349, was:1499, rating:4.5, reviews:96,  badge:"sale", cat:"business", colors:["#3b82f6","#06b6d4"] },
+  { id:3, name:"Lenovo Legion 5 Pro", specs:"AMD Ryzen 7 7745HX | 16GB RAM\n1TB SSD | RTX 4060 8GB",   price:1599, was:null, rating:4.5, reviews:87,  badge:"new", cat:"gaming", colors:["#dc2626","#f59e0b"] },
+  { id:4, name:"HP Spectre x360 14",  specs:"Intel Core i7-1255U | 16GB RAM\n512GB SSD | 14" 2.8K OLED", price:1199, was:1299, rating:4.5, reviews:74, badge:"sale", cat:"business", colors:["#3b82f6","#8b5cf6"] },
+  { id:5, name:"Acer Aspire 5",       specs:"Intel Core i5-12450H | 8GB RAM\n512GB SSD | 15.6" FHD",   price:649, was:null, rating:5, reviews:65, badge:"", cat:"student", colors:["#10b981","#f59e0b"] },
+  { id:6, name:"Apple MacBook Air M2",specs:"Apple M2 Chip | 8GB RAM\n256GB SSD | 13.6" Liquid Retina", price:1049, was:1119, rating:4, reviews:112, badge:"sale", cat:"mac", colors:["#a855f7","#ec4899"] },
+  { id:7, name:"ASUS VivoBook 15",    specs:"Intel Core i3-1215U | 8GB RAM\n512GB SSD | 15.6" FHD",   price:499, was:null, rating:4.5, reviews:53, badge:"", cat:"student", colors:["#f59e0b","#ef4444"] },
+  { id:8, name:"MSI Katana GF66",     specs:"Intel Core i7-12650H | 16GB RAM\n512GB SSD | RTX 4050 6GB", price:1099, was:null, rating:4.5, reviews:69, badge:"new", cat:"gaming", colors:["#ef4444","#111827"] },
+];
+
+let cartCount = 2;
+
+function laptopSVG(colors, w, h) {
+  const c1 = colors[0] || "#3b82f6", c2 = colors[1] || "#8b5cf6";
+  return `<svg width="${w}" height="${h}" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="4" width="110" height="62" rx="7" fill="#1a1a2e"/>
+    <rect x="8" y="7" width="104" height="56" rx="5" fill="#0f0f23"/>
+    <defs><linearGradient id="sg${Math.random().toString(36).slice(2)}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/>
+    </linearGradient></defs>
+    <rect x="10" y="9" width="100" height="52" rx="4" fill="url(#sg${Math.random().toString(36).slice(2)})" opacity=".9"/>
+    <rect x="0" y="66" width="120" height="10" rx="4" fill="#2d2d4e"/>
+    <rect x="38" y="70" width="44" height="5" rx="2.5" fill="#3a3a5c"/>
+  </svg>`;
+}
+
+function starStr(r) {
+  const full = Math.floor(r), half = r % 1 >= .5;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - (half?1:0));
+}
+
+function productCard(p, forShop) {
+  const discPct = p.was ? Math.round((1-p.price/p.was)*100) : null;
+  return `<div class="product-card">
+    <div class="product-img">
+      ${laptopSVG(p.colors, 160, 120)}
+      ${p.badge==='new'?'<span class="badge badge-new">New</span>':''}
+      ${p.badge==='sale'?`<span class="badge badge-sale">-${discPct}%</span>`:''}
+      <div class="product-actions">
+        <button class="product-action-btn" title="Wishlist"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        <button class="product-action-btn" title="Compare"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></button>
+      </div>
+    </div>
+    <div class="product-body">
+      <div class="product-name" onclick="showPage('product')" style="cursor:pointer">${p.name}</div>
+      <div class="product-specs">${p.specs.replace('\n','<br>')}</div>
+      <div class="product-rating">
+        <span class="stars">${starStr(p.rating)}</span>
+        <span class="rating-count">(${p.reviews})</span>
+      </div>
+      <div class="product-price">
+        <span class="price-now">$${p.price.toLocaleString()}.00</span>
+        ${p.was?`<span class="price-was">$${p.was.toLocaleString()}.00</span><span class="price-sale">-${discPct}%</span>`:''}
+      </div>
+      <button class="btn-cart" onclick="addToCart('${p.name}', ${p.price})">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Add to Cart
+      </button>
+    </div>
+  </div>`;
+}
+
+// Render home products (first 4)
+document.getElementById('home-products').innerHTML = products.slice(0,4).map(p=>productCard(p)).join('');
+// Render shop products
+document.getElementById('shop-products').innerHTML = products.map(p=>productCard(p,true)).join('');
+
+// Render product thumbnails
+const thumbColors = [["#a855f7","#3b82f6"],["#6366f1","#ec4899"],["#1a1a2e","#374151"],["#374151","#1a1a2e"],["#1e293b","#334155"]];
+document.getElementById('prod-thumbs').innerHTML = thumbColors.map((c,i)=>`
+  <div class="thumb ${i===0?'active':''}" onclick="selectThumb(this)">
+    ${laptopSVG(c, 56, 56)}
+  </div>`).join('');
+
+// ─── Functions ──────────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  const navEl = document.getElementById('nav-'+name);
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function addToCart(name, price) {
+  cartCount++;
+  document.getElementById('cart-count').textContent = cartCount;
+  showToast(`✓ ${name} added to cart`);
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+function changeQty(d) {
+  const el = document.getElementById('qty-val');
+  el.textContent = Math.max(1, +el.textContent + d);
+}
+
+function switchTab(el, id) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+function selectThumb(el) {
+  document.querySelectorAll('.thumb').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function filterCat(cat) {
+  document.querySelectorAll('.cat-list a').forEach(a=>a.classList.remove('active'));
+  event.target.classList.add('active');
+  const filtered = cat==='all' ? products : products.filter(p=>p.cat===cat);
+  document.getElementById('shop-products').innerHTML = filtered.length
+    ? filtered.map(p=>productCard(p,true)).join('')
+    : '<p style="color:var(--gray-600);padding:40px;text-align:center;grid-column:1/-1">No laptops found in this category.</p>';
+}
+</script>
+</body>
+</html>
+</body>
+</html>
